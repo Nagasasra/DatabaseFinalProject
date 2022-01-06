@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %} Customers {% endblock %}
+
+{% block body %}
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Customers</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/customers/add"><span type="button" class="btn btn-primary">Add Customer</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>First Name</th>
+	          <th>Last Name</th>
+	          <th>date of Birth</th>
+	          <th>Gender</th>
+	          <th>Phone Number</th>
+	          <th>Email Address</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for customer in customers %}
+	      <tr>
+	        <td>{{customer["FirstName"]}}</td>
+	        <td>{{customer["LastName"]}}</td>
+	        <td>{{customer["dateofBirth"]}}</td>
+	        <td>{{customer["gender"]}}</td>
+	        <td>{{customer["phoneNumber"]}}</td>
+	        <td>{{customer["emailAddress"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block title %} Lendings {% endblock %}
+
+{% block body %}
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Lendings</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/lendings/add"><span type="button" class="btn btn-primary">Add Lending</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>Date Borrowed</th>
+	          <th>Due Date</th>
+	          <th>Date Returned</th>
+	          <th>bookId</th>
+	          <th>Book Title</th>
+	          <th>Employee Name</th>
+	          <th>Customer Name</th>
+	          <th>Charge</th>
+	          <th>Status</th>
+	          <th>Action</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for lending in lendings %}
+	      <tr>
+	        <td>{{lending["dateBorrowed"]}}</td>
+	        <td>{{lending["dueDate"]}}</td>
+	        <td>{{lending["dateReturned"]}}</td>
+	        <td>{{lending["bookId"]}}</td>
+	        <td>{{lending["bookTitle"]}}</td>
+	        <td>{{lending["employeeName"]}}</td>
+	        <td>{{lending["customerName"]}}</td>
+	        <td>Rp {{lending["charge"]}}</td>
+	        <td>{{lending["status"]}}</td>
+	        <td>
+	        	{% if lending["status"] == "Being Lended" %}
+	        	<a href="/lendings/edit/{{lending['lendId']}}"><span class="btn btn-info btn-sm">edit</span></a>
+	        	{% endif %}
+	        </td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

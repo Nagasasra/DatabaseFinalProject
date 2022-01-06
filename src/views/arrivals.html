@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block title %} Arrivals {% endblock %}
+
+{% block body %}
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Arrivals</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/arrivals/add"><span type="button" class="btn btn-primary">Add Arrival</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>bookId</th>
+	          <th>book Title</th>
+	          <th>date Arrived</th>
+	          <th>time Arrived</th>
+	          <th>Quantity</th>
+	          <th>employee Name</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for arrival in arrivals %}
+	      <tr>
+	        <td>{{arrival["bookId"]}}</td>
+	        <td>{{arrival["bookTitle"]}}</td>
+	        <td>{{arrival["dateArrived"]}}</td>
+	        <td>{{arrival["timeArrived"]}}</td>
+	        <td>{{arrival["quantity"]}}</td>
+	        <td>{{arrival["employeeName"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

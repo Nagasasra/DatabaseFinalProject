@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block title %} Employees {% endblock %}
+
+{% block body %}
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Employees</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/employees/add"><span type="button" class="btn btn-primary">Add Employee</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>First Name</th>
+	          <th>Last Name</th>
+	          <th>date of Birth</th>
+	          <th>Gender</th>
+	          <th>Phone Number</th>
+	          <th>Email Address</th>
+	          <th>Home Address</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for employee in employees %}
+	      <tr>
+	        <td>{{employee["FirstName"]}}</td>
+	        <td>{{employee["LastName"]}}</td>
+	        <td>{{employee["dateofBirth"]}}</td>
+	        <td>{{employee["gender"]}}</td>
+	        <td>{{employee["phoneNumber"]}}</td>
+	        <td>{{employee["emailAddress"]}}</td>
+	        <td>{{employee["homeAddress"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block title %} Books {% endblock %}
+
+{% block body %}
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Books</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/books/add"><span type="button" class="btn btn-primary">Add Book</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>bookId</th>
+	          <th>Title</th>
+	          <th>Release Year</th>
+	          <th>Author</th>
+	          <th>Publisher</th>
+	          <th>Genre</th>
+	          <th>Language</th>
+	          <th>Pages</th>
+	          <th>Quantity Total</th>
+	          <th>Quantity Available</th>
+	          <th>Price</th>
+	          <th>Sell Price</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for book in books %}
+	      <tr>
+	        <td>{{book["bookid"]}}</td>
+	        <td>{{book["bookTitle"]}}</td>
+	        <td>{{book["bookReleaseYear"]}}</td>
+	        <td>{{book["authorName"]}}</td>
+	        <td>{{book["publisherName"]}}</td>
+	        <td>{{book["genreName"]}}</td>
+	        <td>{{book["bookLanguage"]}}</td>
+	        <td>{{book["bookPages"]}}</td>
+	        <td>{{book["bookQuantityTotal"]}}</td>
+	        <td>{{book["bookQuantityAvailable"]}}</td>
+	        <td>Rp {{book["bookPrice"]}}</td>
+	        <td>Rp {{book["bookSellPrice"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

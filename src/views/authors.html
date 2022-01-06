@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %} Authors {% endblock %}
+
+{% block body %}
+
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Authors</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/authors/add"><span type="button" class="btn btn-primary">Add Author</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>First Name</th>
+	          <th>Last Name</th>
+	          <th>Date of Birth</th>
+	          <th>Gender</th>
+	          <th>Email Address</th>
+	          <th>Nationality</th>
+	          <th>Preferred Language</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for author in authors %}
+	      <tr>
+	        <td>{{author["firstName"]}}</td>
+	        <td>{{author["lastName"]}}</td>
+	        <td>{{author["dateofBirth"]}}</td>
+	        <td>{{author["gender"]}}</td>
+	        <td>{{author["emailAddress"]}}</td>
+	        <td>{{author["nationality"]}}</td>
+	        <td>{{author["preferredLanguage"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

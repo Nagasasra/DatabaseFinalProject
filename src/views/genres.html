@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+
+{% block title %} Genres {% endblock %}
+
+{% block body %}
+
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Genres</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/genres/add"><span type="button" class="btn btn-primary">Add Genre</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>Name</th>
+	          <th>Description</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for genre in genres %}
+	      <tr>
+	        <td>{{genre["genreName"]}}</td>
+	        <td>{{genre["genreDescription"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}

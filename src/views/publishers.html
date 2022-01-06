@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block title %} Publishers {% endblock %}
+
+{% block body %}
+
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>List of Publishers</h1>
+    </div>
+<br />
+
+<div class="container">
+	<div class="d-flex justify-content-end">
+		<a href="/publishers/add"><span type="button" class="btn btn-primary">Add Publisher</span></a>
+	</div>
+	<br />
+	<table id="example" class="display table table-bordered table-sm" style="width:100%">
+	  <thead>
+	      <tr>
+	          <th>Name</th>
+	          <th>Headquarter</th>
+	          <th>Full Address</th>
+	          <th>Established Year</th>
+	      </tr>
+	  </thead>
+	  <tbody>
+	    {% for publisher in publishers %}
+	      <tr>
+	        <td>{{publisher["publisherName"]}}</td>
+	        <td>{{publisher["publisherHeadquarter"]}}</td>
+	        <td>{{publisher["publisherFullAddress"]}}</td>
+	        <td>{{publisher["publisherEstablishedYear"]}}</td>
+	      </tr>
+	    {% endfor %}
+	  </tbody>
+	</table>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+  </script>
+
+{% endblock %}
