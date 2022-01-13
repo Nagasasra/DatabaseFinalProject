@@ -19,11 +19,11 @@ def addCustomers(customer):
 	cursor = db.cursor(dictionary=True)
 
 	query = """ 
-			INSERT INTO `customer`(`customerId`, `FirstName`, `LastName`, `dateofBirth`, `gender`, `phoneNumber`, `emailAddress`)
-			VALUES (%s, %s, %s, %s, %s, %s, %s)
+			INSERT INTO `customer`(`FirstName`, `LastName`, `dateofBirth`, `gender`, `phoneNumber`, `emailAddress`)
+			VALUES (%s, %s, %s, %s, %s, %s)
 			;
 		"""
-	values = [customer["customerId"], customer["FirstName"], customer["LastName"], customer["dateofBirth"], customer["gender"], customer["phoneNumber"], customer["emailAddress"]]
+	values = [customer["FirstName"], customer["LastName"], customer["dateofBirth"], customer["gender"], customer["phoneNumber"], customer["emailAddress"]]
 	
 	try:
 		cursor.execute(query, tuple(values))
@@ -52,11 +52,11 @@ def addEmployees(employee):
 	cursor = db.cursor(dictionary=True)
 
 	query = """ 
-			INSERT INTO `employee`(`employeeId`, `FirstName`, `LastName`, `dateofBirth`, `gender`, `phoneNumber`, `emailAddress`, `homeAddress`)
-			VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+			INSERT INTO `employee`(`FirstName`, `LastName`, `dateofBirth`, `gender`, `phoneNumber`, `emailAddress`, `homeAddress`)
+			VALUES (%s, %s, %s, %s, %s, %s, %s)
 			;
 		"""
-	values = [employee["employeeId"], employee["FirstName"], employee["LastName"], employee["dateofBirth"], employee["gender"], employee["phoneNumber"], employee["emailAddress"], employee["homeAddress"]]
+	values = [employee["FirstName"], employee["LastName"], employee["dateofBirth"], employee["gender"], employee["phoneNumber"], employee["emailAddress"], employee["homeAddress"]]
 	
 	try:
 		cursor.execute(query, tuple(values))

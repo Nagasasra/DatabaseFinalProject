@@ -188,20 +188,56 @@ def getSellings():
 
 	return res
 
-def addSellings(selling, price):
+def addSellings(selling, employeeId):
 	db = getDb()
 	cursor = db.cursor(dictionary=True)
 
-	query = """ 
-			INSERT INTO `selling`(`sellId`, `dateSold`, `timeSold`, `bookId`, `employeeId`, `customerId`, `price`)
-			VALUES (%s, %s, %s, %s, %s, %s, %s);
+	query = """
+			SELECT bookSellPrice, bookQuantityTotal, bookQuantityAvailable FROM book WHERE bookid = %s
 		"""
-	values = [selling["sellId"], selling["dateSold"], selling["timeSold"], selling["bookId"], selling["employeeId"], selling["customerId"], price]
+	values = [selling["bookId"]]
+	cursor.execute(query, tuple(values))
+	book = cursor.fetchone()
+
+	price = book["bookSellPrice"]
+	newQtyAvailable = book["bookQuantityAvailable"] - 1
+	newQtyTotal = book["bookQuantityTotal"] - 1
+	if newQtyAvailable < 0:
+		db.rollback()
+		return "Book not available"
+
+	query = """
+			INSERT INTO `selling`(`dateSold`, `timeSold`, `bookId`, `employeeId`, `customerId`, `price`)
+			VALUES (%s, %s, %s, %s, %s, %s);
+		"""
+	values = [selling["dateSold"], selling["timeSold"], selling["bookId"], employeeId, selling["customerId"], price]
 	
 	try:
 		cursor.execute(query, tuple(values))
 	except Exception as e:
-		return "Lending record already registered"
+		return "Selling record already registered"
+
+	query = """
+			UPDATE book SET bookQuantityAvailable = %s, bookQuantityTotal = %s WHERE bookid = %s
+		"""
+	values = [newQtyAvailable, newQtyTotal, selling["bookId"]]
+	cursor.execute(query, tuple(values))
+
 	db.commit()
 
 	return "success"
+
+def getFinance():
+	db = getDb()
+	cursor = db.cursor(dictionary=True)
+
+	query = """ 
+			SELECT * FROM finance;
+			;
+		"""
+	values = []
+	cursor.execute(query, tuple(values))
+	res = cursor.fetchall()
+	#print(res)
+
+	return res

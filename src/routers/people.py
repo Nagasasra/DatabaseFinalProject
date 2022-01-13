@@ -14,7 +14,7 @@ def view_customers():
 def add_customers():
 	if session.get('username', None) == None:
 		return redirect("/login")
-	if request.args.get("customerId"):
+	if request.args.get("emailAddress"):
 		is_success = peopleLogic.addCustomers(request.args)
 		if is_success == "success":
 			return redirect("/customers")
@@ -34,7 +34,7 @@ def view_employees():
 def add_lendings():
 	if session.get('username', None) == None:
 		return redirect("/login")
-	if request.args.get("employeeId"):
+	if request.args.get("emailAddress"):
 		is_success = peopleLogic.addEmployees(request.args)
 		if is_success == "success":
 			return redirect("/employees")

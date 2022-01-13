@@ -50,6 +50,7 @@ def login(userData):
 
 	session['username'] = res["username"]
 	session['employeeId'] = res["employeeId"]
+	session['picture'] = res["picture"]
 	return "success"
 
 def getUser(username):
@@ -61,3 +62,37 @@ def getUser(username):
 	res = cursor.fetchone()
 	print(res)
 	return res
+
+def editUser(user):
+	db = getDb()
+	cursor = db.cursor(dictionary=True)
+	query = """
+			UPDATE `employee`
+			SET `FirstName`= %s, `LastName`= %s, `emailAddress`= %s,
+				`phoneNumber`= %s, `dateofBirth`= %s
+			WHERE employeeId = %s
+			;
+		"""
+	values = [user["FirstName"], user["LastName"], user["emailAddress"], user["phoneNumber"], user["dateofBirth"], user["employeeId"]]
+	cursor.execute(query, tuple(values))
+
+	db.commit()
+
+	return "success"
+
+def editPicture(username, picturename):
+	db = getDb()
+	cursor = db.cursor(dictionary=True)
+	query = """
+			UPDATE `user`
+			SET `picture`= %s
+			WHERE username = %s
+			;
+		"""
+	values = [picturename, username]
+	cursor.execute(query, tuple(values))
+
+	db.commit()
+	session["picture"] = picturename
+
+	return "success"

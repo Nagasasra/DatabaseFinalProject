@@ -71,10 +71,20 @@ def view_sellings():
 def add_sellings():
 	if session.get('username', None) == None:
 		return redirect("/login")
+	is_success = ""
 	if request.args.get("bookId"):
-		is_success = actLogic.addSellings(request.args)
+		is_success = actLogic.addSellings(request.args, session["employeeId"])
 		if is_success == "success":
 			return redirect("/sellings")
 
+	books = bookLogic.getBooks()
+	customers = peopleLogic.getCustomers()
 	sellings = actLogic.getSellings()
-	return render_template("addSelling.html", sellings = sellings)
+	return render_template("addSelling.html", books = books, customers = customers, sellings = sellings, errorMessage=is_success)
+
+@act_url.route("/financial", methods=["GET"])
+def view_finance():
+	if session.get('username', None) == None:
+		return redirect("/login")
+	finances = actLogic.getFinance()
+	return render_template("financial.html", finances = finances)

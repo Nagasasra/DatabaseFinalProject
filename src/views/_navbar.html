@@ -1,4 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<style>
+    .gb_Aa {
+        -webkit-background-size: 32px 32px;
+        background-size: 32px 32px;
+        border: 0;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: block;
+        margin-top: 5px;
+        position: relative;
+        height: 32px;
+        width: 32px;
+        z-index: 0;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 <div class="container">
   
 
@@ -37,12 +53,17 @@
           <a class="dropdown-item" href="/employees">Employees</a>
         </div>
       </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
     <!-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
     <ul class="navbar-nav">
+      <img src="/static/profiles/{{session.picture if session.picture else 'default.png'}}" alt="" class="gb_Aa">
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ session.username }}
