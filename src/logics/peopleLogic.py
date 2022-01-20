@@ -38,7 +38,8 @@ def getEmployees():
 	cursor = db.cursor(dictionary=True)
 
 	query = """ 
-			SELECT * FROM employee;
+			SELECT * FROM employee LEFT JOIN user
+			on user.employeeId = employee.employeeId;
 		"""
 	values = []
 	cursor.execute(query, tuple(values))

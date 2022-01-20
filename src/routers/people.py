@@ -27,6 +27,7 @@ def add_customers():
 def view_employees():
 	if session.get('username', None) == None:
 		return redirect("/login")
+
 	employees = peopleLogic.getEmployees()
 	return render_template("employees.html", employees = employees)
 

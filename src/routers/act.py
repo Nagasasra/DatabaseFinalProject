@@ -9,8 +9,10 @@ act_url = Blueprint("activity", __name__)
 def view_arrivals():
 	if session.get('username', None) == None:
 		return redirect("/login")
+
+	books = bookLogic.getBooks()
 	arrivals = actLogic.getArrivals()
-	return render_template("arrivals.html", arrivals = arrivals)
+	return render_template("arrivals.html", arrivals = arrivals, books = books)
 
 @act_url.route("/arrivals/add", methods=["GET"])
 def add_arrivals():
@@ -30,8 +32,10 @@ def add_arrivals():
 def view_lendings():
 	if session.get('username', None) == None:
 		return redirect("/login")
+
+	books = bookLogic.getBooks()
 	lendings = actLogic.getLendings()
-	return render_template("lendings.html", lendings = lendings)
+	return render_template("lendings.html", lendings = lendings, books = books)
 
 @act_url.route("/lendings/add", methods=["GET"])
 def add_lendings():
@@ -64,8 +68,10 @@ def edit_lendings(lendId):
 def view_sellings():
 	if session.get('username', None) == None:
 		return redirect("/login")
+
+	books = bookLogic.getBooks()
 	sellings = actLogic.getSellings()
-	return render_template("sellings.html", sellings = sellings)
+	return render_template("sellings.html", sellings = sellings, books = books)
 
 @act_url.route("/sellings/add", methods=["GET"])
 def add_sellings():

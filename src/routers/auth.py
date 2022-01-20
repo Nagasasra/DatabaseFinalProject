@@ -17,6 +17,7 @@ def register_user():
 
 	return render_template("register.html")
 
+@auth_url.route("/", methods=["GET"])
 @auth_url.route("/login", methods=["GET"])
 def login_user():
 	print(request.args)

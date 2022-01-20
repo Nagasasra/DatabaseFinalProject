@@ -5,7 +5,7 @@ def getArrivals():
 	cursor = db.cursor(dictionary=True)
 
 	query = """ 
-			SELECT arrival.*, book.bookTitle, CONCAT(employee.firstName, " ", employee.lastName) as employeeName
+			SELECT arrival.*, book.bookTitle, book.bookPicture, CONCAT(employee.firstName, " ", employee.lastName) as employeeName
 			FROM arrival
 			JOIN book on arrival.bookId = book.bookid
 			JOIN employee on arrival.employeeId = employee.employeeId
@@ -60,7 +60,7 @@ def getLendings():
 
 	query = """ 
 			SELECT lending.*, 
-				book.bookTitle, 
+				book.bookTitle, book.bookPicture,
 				CONCAT(employee.firstName, " ", employee.lastName) as employeeName, 
 				CONCAT(customer.firstName, " ", customer.lastName) as customerName
 			FROM lending
@@ -82,7 +82,7 @@ def getLending(lendId):
 
 	query = """ 
 			SELECT lending.*, 
-				book.bookTitle, 
+				book.bookTitle,
 				CONCAT(employee.firstName, " ", employee.lastName) as employeeName, 
 				CONCAT(customer.firstName, " ", customer.lastName) as customerName
 			FROM lending
@@ -170,6 +170,7 @@ def getSellings():
 	query = """ 
 			SELECT selling.*,
 				book.bookTitle,
+				book.bookPicture,
 				book.bookSellPrice,
 				employee.employeeId,
 				customer.customerId,

@@ -3,6 +3,23 @@
 {% block title %} Employees {% endblock %}
 
 {% block body %}
+<style>
+    .picture4 {
+        -webkit-background-size: 60px 60px;
+        background-size: 60px 60px;
+        border: 0;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        height: 60px;
+        width: 60px;
+        z-index: 0;
+    }
+</style>
+
 
 <br />
     <div class="d-flex justify-content-center">
@@ -18,6 +35,7 @@
 	<table id="example" class="display table table-bordered table-sm" style="width:100%">
 	  <thead>
 	      <tr>
+	          <th>Profile Picture</th>
 	          <th>First Name</th>
 	          <th>Last Name</th>
 	          <th>date of Birth</th>
@@ -30,6 +48,7 @@
 	  <tbody>
 	    {% for employee in employees %}
 	      <tr>
+	      	<td><img src="/static/profiles/{{employee.picture if employee.picture else 'default.png'}}" alt="" class="picture4"></td>
 	        <td>{{employee["FirstName"]}}</td>
 	        <td>{{employee["LastName"]}}</td>
 	        <td>{{employee["dateofBirth"]}}</td>

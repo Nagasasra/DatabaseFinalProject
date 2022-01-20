@@ -19,6 +19,7 @@
 	  <thead>
 	      <tr>
 	          <th>bookId</th>
+	          <th>Book Image</th>
 	          <th>book Title</th>
 	          <th>date Arrived</th>
 	          <th>time Arrived</th>
@@ -30,6 +31,7 @@
 	    {% for arrival in arrivals %}
 	      <tr>
 	        <td>{{arrival["bookId"]}}</td>
+	        <td><img src="/static/books/{{arrival.bookPicture if arrival.bookPicture else 'default.png'}}" alt="" class="picture3"></td>
 	        <td>{{arrival["bookTitle"]}}</td>
 	        <td>{{arrival["dateArrived"]}}</td>
 	        <td>{{arrival["timeArrived"]}}</td>

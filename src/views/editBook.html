@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<style>
+    .picture5 {
+        background-size: 150px 188px;
+        border: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        height: 188px;
+        width: 150px;
+        z-index: 0;
+    }
+</style>
+
+<br />
+    <div class="d-flex justify-content-center">
+        <h1>Editing a Book</h1>
+    </div>
+
+<div class="container d-flex justify-content-center" >
+    <div class="col-md-4" style="border:1px solid #cecece; padding:40px 20px 40px 20px;">
+        <div class="invalid-feedback d-flex justify-content-center">{{ errorMessage }}</div>
+        <img src="/static/books/{{book.bookPicture if book.bookPicture else 'default.png'}}" alt="" class="picture5">
+        <br />
+      <form action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="bookid" value="{{book['bookid']}}">
+        <div class="form-group">
+            <label>Book Title</label>
+            <input type="text" class="form-control" value="{{book['bookTitle']}}" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label>Author</label>
+            <input type="text" class="form-control" value="{{book['authorName']}}" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label>Publisher</label>
+            <input type="text" class="form-control" value="{{book['publisherName']}}" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label>Buying Price</label>
+          <input type="number" class="form-control" value="{{book['bookPrice']}}" name="bookPrice" placeholder="buying price" required="required">
+        </div>
+        <div class="form-group">
+            <label>Selling Price</label>
+          <input type="number" class="form-control" value="{{book['bookSellPrice']}}" name="bookSellPrice" placeholder="selling price" required="required">
+        </div>
+        <div class="form-group">
+            <label> Image</label>
+            <input type="file" name="bookPicture">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </div>
+      </form>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+{% block js %} 
+
+{% endblock %}

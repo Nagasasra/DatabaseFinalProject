@@ -1,5 +1,5 @@
 <style>
-    .gb_Aa {
+    .picture1 {
         -webkit-background-size: 32px 32px;
         background-size: 32px 32px;
         border: 0;
@@ -63,7 +63,7 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
     <ul class="navbar-nav">
-      <img src="/static/profiles/{{session.picture if session.picture else 'default.png'}}" alt="" class="gb_Aa">
+      <img src="/static/profiles/{{session.picture if session.picture else 'default.png'}}" alt="" class="picture1">
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{ session.username }}

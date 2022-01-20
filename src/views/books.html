@@ -10,7 +10,7 @@
     </div>
 <br />
 
-<div class="container">
+<div class="" style="padding:1em;">
 	<div class="d-flex justify-content-end">
 		<a href="/books/add"><span type="button" class="btn btn-primary">Add Book</span></a>
 	</div>
@@ -18,6 +18,7 @@
 	<table id="example" class="display table table-bordered table-sm" style="width:100%">
 	  <thead>
 	      <tr>
+	      	  <th>Image</th>
 	          <th>bookId</th>
 	          <th>Title</th>
 	          <th>Release Year</th>
@@ -30,11 +31,13 @@
 	          <th>Quantity Available</th>
 	          <th>Price</th>
 	          <th>Sell Price</th>
+	          <th>Action</th>
 	      </tr>
 	  </thead>
 	  <tbody>
 	    {% for book in books %}
 	      <tr>
+	      	<td><img src="/static/books/{{book.bookPicture if book.bookPicture else 'default.png'}}" alt="" class="picture3"></td>
 	        <td>{{book["bookid"]}}</td>
 	        <td>{{book["bookTitle"]}}</td>
 	        <td>{{book["bookReleaseYear"]}}</td>
@@ -45,8 +48,11 @@
 	        <td>{{book["bookPages"]}}</td>
 	        <td>{{book["bookQuantityTotal"]}}</td>
 	        <td>{{book["bookQuantityAvailable"]}}</td>
-	        <td>Rp {{book["bookPrice"]}}</td>
-	        <td>Rp {{book["bookSellPrice"]}}</td>
+	        <td>Rp {{'{:,.0f}'.format(book["bookPrice"])}}</td>
+	        <td>Rp {{'{:,.0f}'.format(book["bookSellPrice"])}}</td>
+	        <td>
+	        	<a href="/books/edit/{{book['bookid']}}"><span class="btn btn-info btn-sm">edit</span></a>
+	        </td>
 	      </tr>
 	    {% endfor %}
 	  </tbody>

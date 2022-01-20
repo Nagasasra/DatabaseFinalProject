@@ -22,6 +22,7 @@
 	          <th>Due Date</th>
 	          <th>Date Returned</th>
 	          <th>bookId</th>
+	          <th>Book Image</th>
 	          <th>Book Title</th>
 	          <th>Employee Name</th>
 	          <th>Customer Name</th>
@@ -37,10 +38,11 @@
 	        <td>{{lending["dueDate"]}}</td>
 	        <td>{{lending["dateReturned"]}}</td>
 	        <td>{{lending["bookId"]}}</td>
+	        <td><img src="/static/books/{{lending.bookPicture if lending.bookPicture else 'default.png'}}" alt="" class="picture3"></td>
 	        <td>{{lending["bookTitle"]}}</td>
 	        <td>{{lending["employeeName"]}}</td>
 	        <td>{{lending["customerName"]}}</td>
-	        <td>Rp {{lending["charge"]}}</td>
+	        <td>Rp {{'{:,.0f}'.format(lending["charge"])}}</td>
 	        <td>{{lending["status"]}}</td>
 	        <td>
 	        	{% if lending["status"] == "Being Lended" %}

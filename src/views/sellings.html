@@ -21,6 +21,7 @@
 	          <th>Date Sold</th>
 	          <th>Time Sold</th>
 	          <th>bookId</th>
+	          <th>Book Image</th>
 	          <th>Book Title</th>
 	          <th>Employee Name</th>
 	          <th>Customer Name</th>
@@ -33,10 +34,11 @@
 	        <td>{{selling["dateSold"]}}</td>
 	        <td>{{selling["timeSold"]}}</td>
 	        <td>{{selling["bookId"]}}</td>
+	        <td><img src="/static/books/{{selling.bookPicture if selling.bookPicture else 'default.png'}}" alt="" class="picture3"></td>
 	        <td>{{selling["bookTitle"]}}</td>
 	        <td>{{selling["employeeName"]}}</td>
 	        <td>{{selling["customerName"]}}</td>
-	        <td>Rp {{selling["bookSellPrice"]}}</td>
+	        <td>Rp {{'{:,.0f}'.format(selling["bookSellPrice"])}}</td>
 	      </tr>
 	    {% endfor %}
 	  </tbody>
